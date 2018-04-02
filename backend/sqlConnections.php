@@ -51,10 +51,10 @@
         $_SESSION['error_sql'] = $error_msg;
         $_SESSION['error_sql_debug'] = $error_msg;
 
-				$logFile = fopen(str_replace('functions', 'log', str_replace('generales.php', "log_".date("Y-m-d", strtotime("now")).".log", _FILE_)), "a");
-				fwrite($logFile, date("H:i:s - ", strtotime("now")).$query."\r\n");
-				//fwrite($logFile, date("H:i:s - ", strtotime("now")).$ps_sql."\r\n");
-				fclose($logFile);
+				// $logFile = fopen(str_replace('functions', 'log', str_replace('generales.php', "log_".date("Y-m-d", strtotime("now")).".log", _FILE_)), "a");
+				// fwrite($logFile, date("H:i:s - ", strtotime("now")).$query."\r\n");
+				// //fwrite($logFile, date("H:i:s - ", strtotime("now")).$ps_sql."\r\n");
+				// fclose($logFile);
 
 	    return ($resultArray);
 	}

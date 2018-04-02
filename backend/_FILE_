@@ -1,5 +1,0 @@
-00:00:05 - SELECT * FROM country
-00:07:15 - SELECT * FROM country
-00:13:53 - SELECT * FROM city
-00:20:35 - SELECT * FROM city WHERE city_id = 1
-00:20:56 - SELECT * FROM city WHERE city_id = 2
