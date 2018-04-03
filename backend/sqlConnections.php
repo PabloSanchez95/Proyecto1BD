@@ -5,7 +5,7 @@
         $_SESSION['error_sql'] = "";
         $_SESSION['sql_debug'] = $query;
 	  	$link = mysql_connect("localhost", "root","123") or die (json_encode(array('success'=>'false','error_sql'=>mysql_error(),'messageText'=>'Error de conexi&oacute;n')));
-	    mysql_select_db ("vacaciones");
+	    mysql_select_db ("vacations");
 	    mysql_query("SET NAMES 'utf8'");
 	    $result = mysql_query($query,$link);
 	    $operation = strtoupper(substr(trim($query), 0,6));
