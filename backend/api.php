@@ -37,6 +37,9 @@ switch ($action) {
   case 'hotel':
     gethotel();
     break;
+  case 'inserthotel':
+    insertHotel();
+    break;
   case 'hotel_room':
     gethotel_room();
     break;
@@ -77,7 +80,7 @@ function getaddress(){
   if(!empty($_GET['address_id'])){
     $sql .= " WHERE address_id = ".$_GET['address_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -86,7 +89,7 @@ function getbill(){
   if(!empty($_GET['bill_id'])){
     $sql .= " WHERE bill_id = ".$_GET['bill_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -95,7 +98,7 @@ function getcity(){
   if(!empty($_GET['city_id'])){
     $sql .= " WHERE city_id = ".$_GET['city_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -104,7 +107,7 @@ function getcountry(){
   if(!empty($_GET['country_id'])){
     $sql .= " WHERE country_id = ".$_GET['country_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -113,7 +116,7 @@ function getcustomer(){
   if(!empty($_GET['customer_id'])){
     $sql .= " WHERE customer_id = ".$_GET['customer_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -122,7 +125,7 @@ function getdiscount(){
   if(!empty($_GET['discount_id'])){
     $sql .= " WHERE discount_id = ".$_GET['discount_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -131,7 +134,7 @@ function getexpedition(){
   if(!empty($_GET['expedition_id'])){
     $sql .= " WHERE expedition_id = ".$_GET['expedition_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -140,7 +143,7 @@ function getflight(){
   if(!empty($_GET['flight_id'])){
     $sql .= " WHERE flight_id = ".$_GET['flight_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -149,7 +152,7 @@ function getflight_route(){
   if(!empty($_GET['flight_route_id'])){
     $sql .= " WHERE flight_route_id = ".$_GET['flight_route_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -158,7 +161,7 @@ function getfligt_type(){
   if(!empty($_GET['fligt_type_id'])){
     $sql .= " WHERE fligt_type_id = ".$_GET['fligt_type_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -167,7 +170,7 @@ function gethotel(){
   if(!empty($_GET['hotel_id'])){
     $sql .= " WHERE hotel_id = ".$_GET['hotel_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -176,7 +179,7 @@ function gethotel_room(){
   if(!empty($_GET['hotel_room_id'])){
     $sql .= " WHERE hotel_room_id = ".$_GET['hotel_room_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -185,7 +188,7 @@ function getlocation(){
   if(!empty($_GET['location_id'])){
     $sql .= " WHERE location_id = ".$_GET['location_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -194,7 +197,7 @@ function getpack_flight(){
   if(!empty($_GET['pack_flight_id'])){
     $sql .= " WHERE pack_flight_id = ".$_GET['pack_flight_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -203,7 +206,7 @@ function getpack_hotel(){
   if(!empty($_GET['pack_hotel_id'])){
     $sql .= " WHERE pack_hotel_id = ".$_GET['pack_hotel_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -212,7 +215,7 @@ function getpack_location(){
   if(!empty($_GET['pack_location_id'])){
     $sql .= " WHERE pack_location_id = ".$_GET['pack_location_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -221,7 +224,7 @@ function getpack_plan(){
   if(!empty($_GET['pack_plan_id'])){
     $sql .= " WHERE pack_plan_id = ".$_GET['pack_plan_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -230,7 +233,7 @@ function getpackage(){
   if(!empty($_GET['package_id'])){
     $sql .= " WHERE package_id = ".$_GET['package_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -239,7 +242,7 @@ function getplan(){
   if(!empty($_GET['plan_id'])){
     $sql .= " WHERE plan_id = ".$_GET['plan_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -248,7 +251,7 @@ function getplan_exp(){
   if(!empty($_GET['plan_exp_id'])){
     $sql .= " WHERE plan_exp_id = ".$_GET['plan_exp_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
   echo json_encode($rst);
 }
 
@@ -257,7 +260,15 @@ function getroom_type(){
   if(!empty($_GET['room_type_id'])){
     $sql .= " WHERE room_type_id = ".$_GET['room_type_id'];
   }
-  $rst = executeQuery($sql);
+  $rst = executeQueryRead($sql);
+  echo json_encode($rst);
+}
+
+
+function insertHotel(){
+  $params = json_decode($_GET['params'],true);
+  $sql = "INSERT INTO hotel(hotel,rating,address_id) VALUES ('".$params['hotel']."','".$params['rating']."','".$params['address_id']."')";
+  $rst = executeQueryMaster($sql);
   echo json_encode($rst);
 }
 

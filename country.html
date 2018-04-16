@@ -34,7 +34,7 @@
     width: 700px;
     margin: 30px auto;
         background: #fff;
-        padding: 20px;  
+        padding: 20px;
         box-shadow: 0 1px 1px rgba(0,0,0,.05);
     }
     .table-title {
@@ -77,7 +77,7 @@
         display: inline-block;
         margin: 0 5px;
     min-width: 24px;
-    }    
+    }
   table.table td a.add {
         color: #27C46B;
     }
@@ -95,7 +95,7 @@
       margin-right: -1px;
         position: relative;
         top: 3px;
-    }    
+    }
     table.table .form-control {
         height: 32px;
         line-height: 32px;
@@ -111,57 +111,27 @@
 </style>
   <script type="text/javascript">
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-  var actions = $("table td:last-child").html();
-  // Append table with add row form on add new button click
-    $(".add-new").click(function(){
-    $(this).attr("disabled", "disabled");
-    var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-           
-           
-      '<td>' + actions + '</td>' +
-        '</tr>';
-      $("table").append(row);   
-    $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-  // Add row on add button click
-  $(document).on("click", ".add", function(){
-    var empty = false;
-    var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function(){
-      if(!$(this).val()){
-        $(this).addClass("error");
-        empty = true;
-      } else{
-                $(this).removeClass("error");
-            }
-    });
-    $(this).parents("tr").find(".error").first().focus();
-    if(!empty){
-      input.each(function(){
-        $(this).parent("td").html($(this).val());
-      });     
-      $(this).parents("tr").find(".add, .edit").toggle();
-      $(".add-new").removeAttr("disabled");
-    }   
-    });
-  // Edit row on edit button click
-  $(document).on("click", ".edit", function(){    
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
-      $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-    });   
-    $(this).parents("tr").find(".add, .edit").toggle();
-    $(".add-new").attr("disabled", "disabled");
-    });
-  // Delete row on delete button click
-  $(document).on("click", ".delete", function(){
-        $(this).parents("tr").remove();
-    $(".add-new").removeAttr("disabled");
-    });
+  $.ajax({
+          type: 'GET',
+          url: './backend/api.php',
+          data: { action: 'country' },
+          success: function (data) {
+
+              var rst = JSON.parse(data);
+              var tableRef = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+              for(var x in rst['root']){
+                var newRow = tableRef.insertRow();
+
+
+                var newCell  = newRow.insertCell(0);
+                var newText  = document.createTextNode(rst['root'][x]['country_id']);
+                newCell.appendChild(newText);
+                var newCell  = newRow.insertCell(1);
+                var newText  = document.createTextNode(rst['root'][x]['country']);
+                newCell.appendChild(newText);
+              }
+          }
+      });
 });
 </script>
 </head>
@@ -283,7 +253,7 @@ $(document).ready(function(){
             <i class="fa fa-fw fa-angle-left"></i>
           </a>
         </li>
-      </ul>      
+      </ul>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
@@ -322,7 +292,7 @@ $(document).ready(function(){
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                         <td>23</td>
                         <td>France</td>
                         <td>
@@ -330,8 +300,8 @@ $(document).ready(function(){
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
-                      </tr>
-            
+                      </tr> -->
+
               </tbody>
             </table>
           </div>
@@ -376,7 +346,7 @@ $(document).ready(function(){
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <!-- <script src="vendor/datatables/jquery.dataTables.js"></script> -->
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
